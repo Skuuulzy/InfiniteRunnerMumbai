@@ -26,6 +26,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private bool _isSlidingDown;
     [SerializeField] private bool _isJumping;
     
+    private Coroutine _slideCoroutine;
+    
     public void Update()
     {
         HandleJump();
@@ -53,7 +55,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (_isSliding)
             {
-                return;
+                StopCoroutine(_slideCoroutine);
+                _isSliding = false;
             }
             
             if (_currentLaneIndex == 0)
@@ -62,7 +65,7 @@ public class PlayerMovementController : MonoBehaviour
             }
             
             _currentLaneIndex --;
-            StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+            _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
         }
         
         // Slide right
@@ -70,7 +73,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (_isSliding)
             {
-                return;
+                StopCoroutine(_slideCoroutine);
+                _isSliding = false;
             }
             
             if (_currentLaneIndex == _slideTarget.Length - 1)
@@ -79,7 +83,7 @@ public class PlayerMovementController : MonoBehaviour
             }
             
             _currentLaneIndex++;
-            StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+            _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
         }
     }
     
