@@ -14,6 +14,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float _slideDuration = 1f;
     [SerializeField] private Transform[] _slideTarget;
 
+    [Header("Components")]
+    [SerializeField] private Animator _animator;
+    
     [Header("Debug")]
     [SerializeField] private int _currentLaneIndex = 1;
     [SerializeField] private bool _isSliding;
@@ -71,6 +74,7 @@ public class PlayerMovementController : MonoBehaviour
     private IEnumerator JumpCoroutine()
     {
         _isJumping = true;
+        _animator.SetBool("IsJumping", true);
         float jumpTimer = 0f;
         float halfJumpDuration = _jumpDuration / 2f;
 
@@ -89,6 +93,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         // Fall
+        _animator.SetTrigger("Falling");
         jumpTimer = 0f;
         
         while (jumpTimer < halfJumpDuration)
@@ -105,6 +110,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         _isJumping = false;
+        _animator.SetBool("IsJumping", false);
     }
 
     private IEnumerator SlideCoroutine(Transform target)
