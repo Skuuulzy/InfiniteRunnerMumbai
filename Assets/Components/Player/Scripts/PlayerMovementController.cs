@@ -13,6 +13,9 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Slide parameters")] 
     [SerializeField] private float _slideDuration = 1f;
     [SerializeField] private Transform[] _slideTarget;
+    
+    [Header("Slide parameters")] 
+    [SerializeField] private float _slideDownDuration = 1.5f;
 
     [Header("Components")]
     [SerializeField] private Animator _animator;
@@ -20,22 +23,31 @@ public class PlayerMovementController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private int _currentLaneIndex = 1;
     [SerializeField] private bool _isSliding;
+    [SerializeField] private bool _isSlidingDown;
     [SerializeField] private bool _isJumping;
-    
     
     public void Update()
     {
-        // Jump
+        HandleJump();
+        HandleSlide();
+        HandleSlideDown();
+    }
+
+    private void HandleJump()
+    {
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
-            if (_isJumping)
+            if (_isJumping || _isSlidingDown)
             {
                 return;
             }
             
             StartCoroutine(JumpCoroutine());
         }
-
+    }
+    
+    private void HandleSlide()
+    {
         // Slide left
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
         {
@@ -68,6 +80,19 @@ public class PlayerMovementController : MonoBehaviour
             
             _currentLaneIndex++;
             StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+        }
+    }
+    
+    private void HandleSlideDown()
+    {
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        {
+            if (_isSlidingDown || _isJumping)
+            {
+                return;
+            }
+            
+            StartCoroutine(SlideDownCoroutine());
         }
     }
 
@@ -131,5 +156,22 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         _isSliding = false;
+    }
+
+    private IEnumerator SlideDownCoroutine()
+    {
+        _isSlidingDown = true;
+        _animator.SetBool("IsSlidingDown", true);
+        
+        var slideTimer = 0f;
+
+        while (slideTimer <= _slideDownDuration)
+        {
+            slideTimer += Time.deltaTime;
+            yield return null;
+        }
+        
+        _isSlidingDown = false;
+        _animator.SetBool("IsSlidingDown", false);
     }
 }
