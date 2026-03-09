@@ -33,7 +33,7 @@ public class PlayerCollisionController : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(PlayerSpherePosition, _currentSphereRadius);
         if (hitColliders.Length > 0 && !_isHit)
         {
-            Debug.Log("Player hit something!");
+            EventSystem.OnPlayerCollision?.Invoke();
             _isHit = true;
         }
 

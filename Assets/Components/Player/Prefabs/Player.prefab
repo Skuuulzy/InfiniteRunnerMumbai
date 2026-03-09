@@ -217,6 +217,9 @@ PrefabInstance:
       addedObject: {fileID: 3750027306458424272}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a87bce69382cf14ca0644cbc66907ce, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1855042129015102121}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a87bce69382cf14ca0644cbc66907ce, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 9111570454950309005}
   m_SourcePrefab: {fileID: 100100000, guid: 2a87bce69382cf14ca0644cbc66907ce, type: 3}
 --- !u!4 &2728997990094540065 stripped
@@ -320,6 +323,22 @@ MonoBehaviour:
   _isSliding: 0
   _isSlidingDown: 0
   _isJumping: 0
+--- !u!114 &1855042129015102121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356458916998764443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d8392bb1e646388a58fc677a41dcfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sphereCenter: {x: 0, y: 0.35, z: 0}
+  _sphereRadius: 0.35
+  _shrinkSphereCenter: {x: 0, y: 0.25, z: 0}
+  _shrinkSphereRadius: 0.25
 --- !u!95 &9111570454950309005
 Animator:
   serializedVersion: 7
