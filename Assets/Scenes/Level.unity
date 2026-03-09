@@ -458,6 +458,7 @@ MonoBehaviour:
   _translationSpeed: 3
   _activeChunkCount: 5
   _behindChunkCount: 1
+  _stopDelayOnDamage: 0.6
   _chunksPool:
   - {fileID: 6894624972699862793, guid: f202ce1d8b02b26489f6f398e9d87c48, type: 3}
   - {fileID: 6894624972699862793, guid: 85279cfa171515e46821e2d26a7db58d, type: 3}
@@ -507,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f09fe9a04ab66a44b28f7c2b663c4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeCount: 2
+  _lifeCount: 3
 --- !u!4 &2073055034
 Transform:
   m_ObjectHideFlags: 0
