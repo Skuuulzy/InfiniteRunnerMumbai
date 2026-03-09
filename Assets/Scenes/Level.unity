@@ -478,17 +478,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2137450290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2892027778143498523, guid: 38194f578816e2542a33c07abe8e2b17, type: 3}
-  m_PrefabInstance: {fileID: 6620610569361469863}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d8392bb1e646388a58fc677a41dcfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6620610569361469863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,10 +530,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3750027306458424272, guid: 38194f578816e2542a33c07abe8e2b17, type: 3}
-      propertyPath: _playerCollisionController
-      value: 
-      objectReference: {fileID: 2137450290}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

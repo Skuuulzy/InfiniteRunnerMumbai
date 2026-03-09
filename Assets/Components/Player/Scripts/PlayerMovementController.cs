@@ -27,7 +27,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private bool _isJumping;
     
     private Coroutine _slideCoroutine;
-    
+
     public void Update()
     {
         HandleJump();
@@ -166,6 +166,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         _isSlidingDown = true;
         _animator.SetBool("IsSlidingDown", true);
+        EventSystem.OnPlayerSlideDown?.Invoke(true);
         
         var slideTimer = 0f;
 
@@ -177,5 +178,6 @@ public class PlayerMovementController : MonoBehaviour
         
         _isSlidingDown = false;
         _animator.SetBool("IsSlidingDown", false);
+        EventSystem.OnPlayerSlideDown?.Invoke(false);
     }
 }
