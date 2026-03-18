@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,7 +44,6 @@ public class PlayerMovementController : MonoBehaviour
         if (playerLife > 0)
         {
             _animator.SetTrigger("TakeDamage");
-            
             return;
         }
         
