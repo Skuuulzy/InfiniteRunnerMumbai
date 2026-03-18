@@ -47,6 +47,7 @@ public class PlayerMovementController : MonoBehaviour
         if (newState is not GameState)
         {
             _locked = true;
+            StopAllCoroutines();
             EventSystem.OnPlayerLifeUpdated -= HandlePlayerLifeUpdated;
             return;
         }

@@ -6,7 +6,7 @@ public class StateMachine
     
     public void ChangeState(State newState)
     {
-        Debug.Log("Changing state from: " + CurrentState?.GetType().Name + "to: " + newState.GetType().Name);
+        Debug.Log("Changing state from: " + CurrentState?.GetType().Name + " to: " + newState.GetType().Name);
         
         CurrentState?.Exit();
         CurrentState = newState;
