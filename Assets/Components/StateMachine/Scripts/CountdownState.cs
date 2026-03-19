@@ -11,7 +11,6 @@ public class CountdownState :State
 
     public override void Enter()
     {
-        Debug.Log("Countdown started");
         _timer = _initialTime;
     }
 
@@ -30,6 +29,6 @@ public class CountdownState :State
 
     public override void Exit()
     {
-        Debug.Log("Countdown finished");
+        
     }
 }
