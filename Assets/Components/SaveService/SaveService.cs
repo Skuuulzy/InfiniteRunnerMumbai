@@ -24,10 +24,10 @@ namespace Components.SaveService
                 string json = File.ReadAllText(FilePath);
                 return JsonUtility.FromJson<SaveData>(json);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                Debug.LogError("Something went wrong with data loading: " + e);
-                return null;
+                Debug.LogWarning("No data found, creating a new one... Details: " + exception);
+                return new SaveData();
             }
         }
     }

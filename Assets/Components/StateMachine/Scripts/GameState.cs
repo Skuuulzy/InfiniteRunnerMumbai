@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Components.SaveService;
+using UnityEngine;
 
 public class GameState : State
 {
@@ -22,6 +23,13 @@ public class GameState : State
 
     public override void Exit()
     {
+        var saveData = SaveService.Load();
+        if (saveData.BestTime < Timer)
+        {
+            saveData.BestTime = Timer;
+            SaveService.Save(saveData);
+        }
+        
         EventSystem.OnPlayerLifeUpdated += HandlePlayerLifeUpdated;
     }
     
