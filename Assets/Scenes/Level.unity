@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 1104070994}
   - component: {fileID: 1104070993}
   m_Layer: 0
-  m_Name: ObstacleController
+  m_Name: ObstacleGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,11 +459,9 @@ MonoBehaviour:
   _activeChunkCount: 5
   _behindChunkCount: 1
   _stopDelayOnDamage: 0.6
+  _distanceToNextChunk: 5
   _chunksPool:
   - {fileID: 6894624972699862793, guid: f202ce1d8b02b26489f6f398e9d87c48, type: 3}
-  - {fileID: 6894624972699862793, guid: 85279cfa171515e46821e2d26a7db58d, type: 3}
-  - {fileID: 6894624972699862793, guid: 25e1ee99f316acf4e966185ca813f0ad, type: 3}
-  - {fileID: 6894624972699862793, guid: f6a318c03b94b6043b12fd555c0895c8, type: 3}
   _speedUpInterval: 5
   _speedUpIncrease: 1.5
 --- !u!4 &1104070994
@@ -473,6 +471,59 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104070992}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1659745536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659745538}
+  - component: {fileID: 1659745537}
+  m_Layer: 0
+  m_Name: FloorGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1659745537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659745536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c037af4156dcb49ba4d91492e5055f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _translationSpeed: 3
+  _activeChunkCount: 5
+  _behindChunkCount: 1
+  _stopDelayOnDamage: 0.6
+  _distanceToNextChunk: 0
+  _chunksPool:
+  - {fileID: 6894624972699862793, guid: 2f678e4707498ff4981f96fce3c4965c, type: 3}
+  _speedUpInterval: 5
+  _speedUpIncrease: 1.5
+--- !u!4 &1659745538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659745536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -636,5 +687,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 6620610569361469863}
   - {fileID: 1104070994}
+  - {fileID: 1659745538}
   - {fileID: 2073055034}
   - {fileID: 1959658718}

@@ -9,6 +9,7 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private int _activeChunkCount = 5;
     [SerializeField] private int _behindChunkCount = 1;
     [SerializeField] private float _stopDelayOnDamage = 0.2f;
+    [SerializeField] private float _distanceToNextChunk = 5f;
     
     [Header("Components")]
     [SerializeField] private ChunkController[] _chunksPool;
@@ -118,7 +119,7 @@ public class ObstacleController : MonoBehaviour
         int missingChunkCount = _activeChunkCount - _instancedChunks.Count;
         for (int i = 0; i < missingChunkCount; i++)
         {
-            var chunk = AddChunk(LastActiveChunk().EndAnchor);
+            var chunk = AddChunk(LastActiveChunk().EndAnchor + new Vector3(0, 0, _distanceToNextChunk));
             _instancedChunks.Add(chunk);
         }
     }
@@ -134,7 +135,7 @@ public class ObstacleController : MonoBehaviour
                 continue;
             }
 
-            var chunk = AddChunk(LastActiveChunk().EndAnchor);
+            var chunk = AddChunk(LastActiveChunk().EndAnchor + new Vector3(0, 0, _distanceToNextChunk));
             _instancedChunks.Add(chunk);
         }
     }
