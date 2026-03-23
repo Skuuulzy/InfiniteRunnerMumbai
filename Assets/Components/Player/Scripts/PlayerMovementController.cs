@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Components.SaveService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,16 @@ public class PlayerMovementController : MonoBehaviour
     {
         EventSystem.OnStateChanged += HandleStateChanged;
         _locked = true;
+
+        var saveData = SaveService.Load();
+        if (saveData.SlideSpeed > 0)
+        {
+            _slideDuration = saveData.SlideSpeed;
+        }
+        else
+        {
+            Debug.LogError("Slide speed is invalid.");
+        }
     }
     
     private void OnDestroy()

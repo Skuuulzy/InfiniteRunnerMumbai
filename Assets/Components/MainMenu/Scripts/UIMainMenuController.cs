@@ -27,8 +27,10 @@ public class UIMainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        _saveData.RunCount++;
-        SaveService.Save(_saveData);
+        var saveData = SaveService.Load();
+        
+        saveData.RunCount++;
+        SaveService.Save(saveData);
         
         SceneLoaderService.LoadGame();
     }
