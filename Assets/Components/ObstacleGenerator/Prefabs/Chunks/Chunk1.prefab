@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endAnchor: {fileID: 8781121786763542982}
+  _enemyPrefab: {fileID: 7447248955274457538, guid: 2825af567fc31704598f5d4e63a29029, type: 3}
+  _enemyProbability: 0.3
 --- !u!1001 &15655283064721231
 PrefabInstance:
   m_ObjectHideFlags: 0
