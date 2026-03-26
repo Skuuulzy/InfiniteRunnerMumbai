@@ -5,5 +5,6 @@
     {
         public int RunCount;
         public int BestTime;
+        public string SelectedCharacterName;
     }
 }

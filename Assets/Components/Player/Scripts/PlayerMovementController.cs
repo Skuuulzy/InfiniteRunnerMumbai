@@ -27,9 +27,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private bool _isSlidingDown;
     [SerializeField] private bool _isJumping;
     [SerializeField] private bool _locked;
-    
-    private Coroutine _slideCoroutine;
 
+    private Coroutine _slideCoroutine;
+    
     private void Awake()
     {
         EventSystem.OnStateChanged += HandleStateChanged;

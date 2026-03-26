@@ -25,9 +25,10 @@ public class UIMainMenuController : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(string characterName)
     {
         _saveData.RunCount++;
+        _saveData.SelectedCharacterName = characterName;
         SaveService.Save(_saveData);
         
         SceneLoaderService.LoadGame();
