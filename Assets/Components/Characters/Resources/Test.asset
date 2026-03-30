@@ -10,41 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50f02e00bc78ad40bd65cfdc2514fbe, type: 3}
-  m_Name: Emilly
+  m_Name: Test
   m_EditorClassIdentifier: 
-  _name: Emilly
-  _lifeCount: 3
-  _jumpDuration: 0.5
-  _jumpHeight: 0.7
+  _name: Test
+  _lifeCount: 999
+  _jumpDuration: 2
+  _jumpHeight: 3
   _jumpCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.0023809525
-      inSlope: 4.425397
-      outSlope: 4.425397
-      tangentMode: 0
+      value: 0
+      inSlope: 10.462205
+      outSlope: 10.462205
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.11406288
-    - serializedVersion: 3
-      time: 0.2405605
-      value: 0.6189022
-      inSlope: 1.3856997
-      outSlope: 1.3856997
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.1339293
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      time: 0.095581055
+      value: 0.99998856
+      inSlope: 10.462205
+      outSlope: 10.462205
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -62,19 +53,10 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.178944
     - serializedVersion: 3
-      time: 0.5508832
-      value: 0.78214645
-      inSlope: -1.0684917
-      outSlope: -1.0684917
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
+      time: 0.27539062
       value: 0
-      inSlope: -1.7415211
-      outSlope: -1.7415211
+      inSlope: -3.6312056
+      outSlope: -3.6312056
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -82,10 +64,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _slideDuration: 1
-  _slideDownDuration: 0.5
+  _slideDuration: 0.1
+  _slideDownDuration: 1.2
   _sphereCenter: {x: 0, y: 0.35, z: 0}
   _sphereRadius: 0.35
   _shrinkSphereCenter: {x: 0, y: 0.25, z: 0}
   _shrinkSphereRadius: 0.25
-  _model: {fileID: 9047225086662544405, guid: 4f63fca094b74944c969ffeb79b05245, type: 3}
+  _model: {fileID: 881081112254002091, guid: 8ca07e75d6a8ce74abac4ce2da5a9a95, type: 3}

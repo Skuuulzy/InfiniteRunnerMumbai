@@ -1,25 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    [Header("Jump parameters")]
-    [SerializeField,Tooltip("Duration of jump in seconds")] private float _jumpDuration = 1f;
-    [SerializeField] private float _jumpHeight = 2f;
-    [SerializeField] private AnimationCurve _jumpCurve;
-    [SerializeField] private AnimationCurve _fallCurve;
-
-    [Header("Slide parameters")] 
-    [SerializeField] private float _slideDuration = 1f;
+    [Header("Components")] 
     [SerializeField] private Transform[] _slideTarget;
-    
-    [Header("Slide parameters")] 
-    [SerializeField] private float _slideDownDuration = 1.5f;
-
-    [Header("Components")]
-    [SerializeField] private Animator _animator;
     
     [Header("Debug")]
     [SerializeField] private int _currentLaneIndex = 1;
@@ -27,11 +13,34 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private bool _isSlidingDown;
     [SerializeField] private bool _isJumping;
     [SerializeField] private bool _locked;
-
+    
+    private float _jumpDuration;
+    private float _jumpHeight;
+    private AnimationCurve _jumpCurve;
+    private AnimationCurve _fallCurve;
+    
+    private float _slideDuration ;
+    private float _slideDownDuration;
+    private Animator _animator;
+    
     private Coroutine _slideCoroutine;
     
-    private void Awake()
+    public void Initialize(CharacterTemplateSO characterTemplate, Animator animator)
     {
+        if (animator == null)
+        {
+            Debug.LogError("Animator is null");
+        }
+        _animator = animator;
+        
+        _jumpDuration = characterTemplate.JumpDuration;
+        _jumpHeight = characterTemplate.JumpHeight;
+        _jumpCurve = characterTemplate.JumpCurve;
+        _fallCurve = characterTemplate.FallCurve;
+        
+        _slideDuration = characterTemplate.SlideDuration;
+        _slideDownDuration = characterTemplate.SlideDownDuration;
+        
         EventSystem.OnStateChanged += HandleStateChanged;
         _locked = true;
     }
@@ -51,8 +60,9 @@ public class PlayerMovementController : MonoBehaviour
             EventSystem.OnPlayerLifeUpdated -= HandlePlayerLifeUpdated;
             return;
         }
-        
-        _animator.SetTrigger("Running");
+
+        if (_animator)
+            _animator.SetTrigger("Running");
         EventSystem.OnPlayerLifeUpdated += HandlePlayerLifeUpdated;
         _locked = false;
     }
@@ -61,12 +71,15 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (playerLife > 0)
         {
-            _animator.SetTrigger("TakeDamage");
+            if (_animator)
+                _animator.SetTrigger("TakeDamage");
             return;
         }
         
         StopAllCoroutines();
-        _animator.SetTrigger("Dead");
+        
+        if (_animator)
+            _animator?.SetTrigger("Dead");
         _locked = true;
     }
 
@@ -150,7 +163,10 @@ public class PlayerMovementController : MonoBehaviour
     private IEnumerator JumpCoroutine()
     {
         _isJumping = true;
-        _animator.SetBool("IsJumping", true);
+        
+        if (_animator)
+            _animator?.SetBool("IsJumping", true);
+        
         float jumpTimer = 0f;
         float halfJumpDuration = _jumpDuration / 2f;
 
@@ -169,7 +185,9 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         // Fall
-        _animator.SetTrigger("Falling");
+        if (_animator)
+            _animator?.SetTrigger("Falling");
+        
         jumpTimer = 0f;
         
         while (jumpTimer < halfJumpDuration)
@@ -186,7 +204,9 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         _isJumping = false;
-        _animator.SetBool("IsJumping", false);
+        
+        if (_animator)
+            _animator?.SetBool("IsJumping", false);
     }
 
     private IEnumerator SlideCoroutine(Transform target)
@@ -212,7 +232,10 @@ public class PlayerMovementController : MonoBehaviour
     private IEnumerator SlideDownCoroutine()
     {
         _isSlidingDown = true;
-        _animator.SetBool("IsSlidingDown", true);
+        
+        if (_animator)
+            _animator?.SetBool("IsSlidingDown", true);
+        
         EventSystem.OnPlayerSlideDown?.Invoke(true);
         
         var slideTimer = 0f;
@@ -224,7 +247,10 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         _isSlidingDown = false;
-        _animator.SetBool("IsSlidingDown", false);
+        
+        if (_animator)
+            _animator?.SetBool("IsSlidingDown", false);
+        
         EventSystem.OnPlayerSlideDown?.Invoke(false);
     }
 }

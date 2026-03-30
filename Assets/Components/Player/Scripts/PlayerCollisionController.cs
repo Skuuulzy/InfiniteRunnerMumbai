@@ -2,11 +2,10 @@
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    [Header("Parameters")] 
-    [SerializeField] private Vector3 _sphereCenter;
-    [SerializeField] private float _sphereRadius;
-    [SerializeField] private Vector3 _shrinkSphereCenter;
-    [SerializeField] private float _shrinkSphereRadius;
+    private Vector3 _sphereCenter;
+    private float _sphereRadius;
+    private Vector3 _shrinkSphereCenter;
+    private float _shrinkSphereRadius;
     
     private bool _isHit;
     
@@ -14,9 +13,14 @@ public class PlayerCollisionController : MonoBehaviour
     private float _currentSphereRadius;
 
     private Vector3 PlayerSpherePosition => transform.position + _currentSphereCenter;
-    
-    private void Start()
+
+    public void Initialize(CharacterTemplateSO characterTemplate)
     {
+        _sphereCenter = characterTemplate.SphereCenter;
+        _sphereRadius = characterTemplate.SphereRadius;
+        _shrinkSphereCenter = characterTemplate.ShrinkSphereCenter;
+        _shrinkSphereRadius = characterTemplate.ShrinkSphereRadius;
+        
         _currentSphereCenter = _sphereCenter;
         _currentSphereRadius = _sphereRadius;
         

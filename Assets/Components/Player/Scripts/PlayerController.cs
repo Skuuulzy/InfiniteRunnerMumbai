@@ -3,10 +3,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterTemplateSO _template;
+    [SerializeField] private PlayerMovementController _movementController;
+    [SerializeField] private PlayerCollisionController _collisionController;
+    [SerializeField] private Transform _modelHolder;
+    
+    [Header("Debug")]
+    [SerializeField] private bool _useDebugTemplate;
+    [SerializeField] private CharacterTemplateSO _template;
     
     private void Awake()
     {
+        if (_useDebugTemplate && _template)
+        {
+            Initialize(_template);
+            return;
+        }
+        
         var save = SaveService.Load();
         if (save != null && !string.IsNullOrEmpty(save.SelectedCharacterName))
         {
@@ -17,6 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private void Initialize(CharacterTemplateSO template)
     {
-        var model = Instantiate(template.Model, transform);
+        var model = Instantiate(template.Model, _modelHolder);
+        var animator = model.GetComponent<Animator>();
+        
+        _movementController.Initialize(template, animator);
+        _collisionController.Initialize(template);
     }
 }

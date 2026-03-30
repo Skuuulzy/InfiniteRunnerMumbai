@@ -13,5 +13,79 @@ MonoBehaviour:
   m_Name: Bob
   m_EditorClassIdentifier: 
   _name: Bob
-  _model: {fileID: 6224588552577702384, guid: 9477c754bbdc5f04bbf13c37a0d9d176, type: 3}
   _lifeCount: 6
+  _jumpDuration: 0.8
+  _jumpHeight: 0.7
+  _jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0023809525
+      inSlope: 4.425397
+      outSlope: 4.425397
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.11406288
+    - serializedVersion: 3
+      time: 0.2405605
+      value: 0.6189022
+      inSlope: 1.3856997
+      outSlope: 1.3856997
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1339293
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _fallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.07245934
+      outSlope: -0.07245934
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.178944
+    - serializedVersion: 3
+      time: 0.4167279
+      value: 0.4202385
+      inSlope: -1.0558538
+      outSlope: -1.0558538
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.7204845
+      outSlope: -0.7204845
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _slideDuration: 0.8
+  _slideDownDuration: 0.5
+  _sphereCenter: {x: 0, y: 0.4, z: 0}
+  _sphereRadius: 0.4
+  _shrinkSphereCenter: {x: 0, y: 0.25, z: 0}
+  _shrinkSphereRadius: 0.25
+  _model: {fileID: 6491657559214386567, guid: 9b9749c74952b98499c8f4add5fe767a, type: 3}
