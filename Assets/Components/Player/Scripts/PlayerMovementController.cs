@@ -23,6 +23,8 @@ public class PlayerMovementController : MonoBehaviour
     private Animator _animator;
     
     private Coroutine _slideCoroutine;
+    
+    private InputBuffer _inputBuffer;
 
     public void Initialize(CharacterTemplateSO characterTemplate, Animator animator)
     {
