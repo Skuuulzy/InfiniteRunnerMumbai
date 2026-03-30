@@ -29,9 +29,13 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private bool _locked;
     
     private Coroutine _slideCoroutine;
+    
+    private InputBuffer _inputBuffer;
 
     private void Awake()
     {
+        _inputBuffer = new InputBuffer();
+        
         EventSystem.OnStateChanged += HandleStateChanged;
         _locked = true;
     }
@@ -86,11 +90,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
-            if (_isJumping || _isSlidingDown)
-            {
-                return;
-            }
-            
+            _inputBuffer.Buffer("Jump");
+        }
+        
+        if (!_isJumping && !_isSlidingDown && _inputBuffer.TryConsume("Jump"))
+        {
             StartCoroutine(JumpCoroutine());
         }
     }
