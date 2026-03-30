@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class PlayerMovementController : MonoBehaviour
     private Animator _animator;
     
     private Coroutine _slideCoroutine;
-    
+
     public void Initialize(CharacterTemplateSO characterTemplate, Animator animator)
     {
         if (animator == null)
@@ -41,7 +40,15 @@ public class PlayerMovementController : MonoBehaviour
         _slideDuration = characterTemplate.SlideDuration;
         _slideDownDuration = characterTemplate.SlideDownDuration;
         
+        _inputBuffer = new InputBuffer();
+        
         EventSystem.OnStateChanged += HandleStateChanged;
+        
+        InputController.OnJump += HandleJump;
+        InputController.OnSlideLeft += HandleSlideLeft;
+        InputController.OnSlideRight += HandleSlideRight;
+        InputController.OnSlideDown += HandleSlideDown;
+        
         _locked = true;
     }
     
@@ -49,6 +56,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         EventSystem.OnPlayerLifeUpdated -= HandlePlayerLifeUpdated;
         EventSystem.OnStateChanged -= HandleStateChanged;
+        
+        InputController.OnJump -= HandleJump;
+        InputController.OnSlideLeft -= HandleSlideLeft;
+        InputController.OnSlideRight -= HandleSlideRight;
+        InputController.OnSlideDown -= HandleSlideDown;
     }
     
     private void HandleStateChanged(State newState)
@@ -83,79 +95,76 @@ public class PlayerMovementController : MonoBehaviour
         _locked = true;
     }
 
-    public void Update()
+    private void HandleJump()
     {
         if (_locked)
         {
             return;
         }
         
-        HandleJump();
-        HandleSlide();
-        HandleSlideDown();
-    }
-
-    private void HandleJump()
-    {
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+        _inputBuffer.Buffer("Jump");
+        
+        if (!_isJumping && !_isSlidingDown && _inputBuffer.TryConsume("Jump"))
         {
-            if (_isJumping || _isSlidingDown)
-            {
-                return;
-            }
-            
             StartCoroutine(JumpCoroutine());
         }
     }
-    
-    private void HandleSlide()
+
+    private void HandleSlideLeft()
     {
-        // Slide left
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        if (_locked)
         {
-            if (_isSliding)
-            {
-                StopCoroutine(_slideCoroutine);
-                _isSliding = false;
-            }
-            
-            if (_currentLaneIndex == 0)
-            {
-                return;
-            }
-            
-            _currentLaneIndex --;
-            _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+            return;
         }
         
-        // Slide right
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        if (_isSliding)
         {
-            if (_isSliding)
-            {
-                StopCoroutine(_slideCoroutine);
-                _isSliding = false;
-            }
-            
-            if (_currentLaneIndex == _slideTarget.Length - 1)
-            {
-                return;
-            }
-            
-            _currentLaneIndex++;
-            _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+            StopCoroutine(_slideCoroutine);
+            _isSliding = false;
         }
+
+        if (_currentLaneIndex == 0)
+        {
+            return;
+        }
+
+        _currentLaneIndex--;
+        _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
     }
-    
+
+    private void HandleSlideRight()
+    {
+        if (_locked)
+        {
+            return;
+        }
+        
+        if (_isSliding)
+        {
+            StopCoroutine(_slideCoroutine);
+            _isSliding = false;
+        }
+
+        if (_currentLaneIndex == _slideTarget.Length - 1)
+        {
+            return;
+        }
+
+        _currentLaneIndex++;
+        _slideCoroutine = StartCoroutine(SlideCoroutine(_slideTarget[_currentLaneIndex]));
+    }
+
     private void HandleSlideDown()
     {
-        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        if (_locked)
         {
-            if (_isSlidingDown || _isJumping)
-            {
-                return;
-            }
-            
+            return;
+        }
+        
+        _inputBuffer.Buffer("SlideDown");
+        
+        if (!_isSlidingDown && !_isJumping && _inputBuffer.TryConsume("SlideDown"))
+        {
             StartCoroutine(SlideDownCoroutine());
         }
     }
