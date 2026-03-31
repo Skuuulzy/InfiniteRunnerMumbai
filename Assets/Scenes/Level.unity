@@ -825,7 +825,7 @@ MonoBehaviour:
   _movementController: {fileID: 294880102}
   _collisionController: {fileID: 294880101}
   _modelHolder: {fileID: 294880100}
-  _useDebugTemplate: 1
+  _useDebugTemplate: 0
   _template: {fileID: 11400000, guid: 195c6582204b10f4985b16d368d51a48, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
