@@ -1,5 +1,4 @@
 using Components.SaveService;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class LifeController : MonoBehaviour
@@ -7,7 +6,7 @@ public class LifeController : MonoBehaviour
     [SerializeField] private int _lifeCount = 3;
     
     private CharacterTemplateSO _template;
-    
+
     private int _currentLifeCount;
     
     private void Start()

@@ -24,15 +24,6 @@ public class UIMainMenuController : MonoBehaviour
             _bestTimeText.text = "Best Time: " + timeSpan.Minutes.ToString("00") + ":" + timeSpan.Seconds.ToString("00");
         }
     }
-
-    public void StartGame(string characterName)
-    {
-        _saveData.RunCount++;
-        _saveData.SelectedCharacterName = characterName;
-        SaveService.Save(_saveData);
-        
-        SceneLoaderService.LoadGame();
-    }
     
     public void QuitGame()
     {

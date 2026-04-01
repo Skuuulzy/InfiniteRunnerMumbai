@@ -43,7 +43,7 @@ public static class ScriptableObjectDataBase
     /// <param name="name">The name of the desired object.</param>
     /// <typeparam name="T">The type of the desired object. Type must be an <see cref="Object"/></typeparam>
     /// <returns>The object found, null if nothing is found.</returns>
-    public static T Get<T>(string name) where T : Object
+    public static T Get<T>(string name) where T : ScriptableObject
     {
         var type = typeof(T);
 
@@ -57,5 +57,21 @@ public static class ScriptableObjectDataBase
 
         Debug.LogError("Unable to find a scriptable object with name:" + name + "of type" + type);
         return null;
+    }
+
+    public static List<T> GetAll<T>() where T : ScriptableObject
+    {
+        var result = new List<T>();
+
+        var type = typeof(T);
+        if (SO_DATABASE.TryGetValue(type, out var typeDictionary))
+        {
+            foreach (var (name, scriptableObject) in typeDictionary)
+            {
+                result.Add(scriptableObject as T);
+            }
+        }
+        
+        return result;
     }
 }
