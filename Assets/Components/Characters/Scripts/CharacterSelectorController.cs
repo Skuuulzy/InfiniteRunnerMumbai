@@ -9,17 +9,28 @@ public class CharacterSelectorController : MonoBehaviour
     [SerializeField] private TMP_Text _characterNameText;
     [SerializeField] private TMP_Text _characterJumpHeightText;
     [SerializeField] private TMP_Text _characterJumpTimeText;
+    [SerializeField] private TMP_Text _characterDescriptionText;
     
-    private List<CharacterTemplateSO> _characters;
+    private readonly List<CharacterTemplateSO> _characters = new();
     private int _currentCharacterIndex;
     
     private void Awake()
     {
-        _characters = ScriptableObjectDataBase.GetAll<CharacterTemplateSO>();
-        if (_characters.Count == 0)
+        var all = ScriptableObjectDataBase.GetAll<CharacterTemplateSO>();
+        if (all.Count == 0)
         {
             Debug.LogError("No characters found, make sure you have CharacterTemplateSO inside resources folder.");
             return;
+        }
+
+        foreach (var character in all)
+        {
+            if (!character.Playable)
+            {
+                continue;
+            }
+            
+            _characters.Add(character);
         }
         
         SetUpCharacter(0);
@@ -49,6 +60,7 @@ public class CharacterSelectorController : MonoBehaviour
         _characterNameText.text = characterTemplate.Name;
         _characterJumpHeightText.text = $"Jump Height: {characterTemplate.JumpHeight}m";
         _characterJumpTimeText.text = $"Jump Duration: {characterTemplate.JumpDuration}s";
+        _characterDescriptionText.text = characterTemplate.Description;
     }
     
     public void NextCharacter()

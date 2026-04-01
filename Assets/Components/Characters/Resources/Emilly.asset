@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Emilly
   m_EditorClassIdentifier: 
   _name: Emilly
+  _description: Emilly is polyvant and easy to play.
   _lifeCount: 3
+  _playable: 1
   _jumpDuration: 0.5
   _jumpHeight: 0.7
   _jumpCurve:

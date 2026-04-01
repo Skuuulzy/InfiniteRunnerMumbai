@@ -5,7 +5,9 @@ public class CharacterTemplateSO : ScriptableObject
 {
     [Header("General parameters")] 
     [SerializeField] private string _name;
+    [SerializeField] private string _description = "";
     [SerializeField] private int _lifeCount = 3;
+    [SerializeField] private bool _playable;
     
     [Header("Jump parameters")]
     [SerializeField,Tooltip("Duration of jump in seconds")] private float _jumpDuration = 1f;
@@ -29,6 +31,8 @@ public class CharacterTemplateSO : ScriptableObject
     [SerializeField] private GameObject _model;
     
     public string Name => _name;
+    public string Description => _description;
+    public bool Playable => _playable;
     public GameObject Model => _model;
     public int LifeCount => _lifeCount;
     public float JumpDuration => _jumpDuration;

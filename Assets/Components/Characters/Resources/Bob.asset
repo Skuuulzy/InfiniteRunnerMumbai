@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Bob
   m_EditorClassIdentifier: 
   _name: Bob
+  _description: Bob is a bit slower but has more life.
   _lifeCount: 6
+  _playable: 1
   _jumpDuration: 0.8
   _jumpHeight: 0.7
   _jumpCurve:
